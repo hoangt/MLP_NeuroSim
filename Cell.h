@@ -64,6 +64,7 @@ public:
 	double maxConductance;	// Maximum cell conductance (S)
 	double minConductance;	// Minimum cell conductance (S)
 	bool cmosAccess;	// True: Pseudo-crossbar (1T1R), false: cross-point
+	bool FeFET;         // True: FeFET structure (Pseudo-crossbar only, should be cmosAccess=1)
 	double resistanceAccess;	// The resistance of transistor (Ohm) in Pseudo-crossbar array when turned ON
 	bool nonlinearIV;	// Consider I-V nonlinearity or not (Currently this option is for cross-point array. It is hard to have this option in pseudo-crossbar since it has an access transistor and the transistor's resistance can be comparable to RRAM's resistance after considering the nonlinearity. In this case, we have to iteratively find both the resistance and Vw across RRAM.)
 	bool readNoise;	// Consider read noise or not
@@ -87,8 +88,6 @@ public:
 
 class AnalogNVM: public eNVM {
 public:
-	double numBitLTP;	// Number of bits in the conductance states during LTP or weight increase
-	double numBitLTD;	// Number of bits in the conductance states during LTD or weight decrease
 	int maxNumLevelLTP;	// Maximum number of conductance states during LTP or weight increase
 	int maxNumLevelLTD;	// Maximum number of conductance states during LTD or weight decrease
 	int numPulse;   // Number of write pulses used in the most recent write operation (Positive number: LTP, Negative number: LTD) (dynamic variable)
